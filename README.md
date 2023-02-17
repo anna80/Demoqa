@@ -14,14 +14,19 @@ automate upcoming scripts with page object and create a repository on github
 ⁃ Verify if all data is correct in confirmation window
 
 
-
 ⁃ Go to Elements menu
+
 ⁃ Add one more user
+
 ⁃ Verify if user is created
+
 ⁃ Delete created user
+
 ⁃ Verify that user is deleted
 
 
 ⁃ Go to Elements menu
+
 ⁃ Do search by any user
+
 ⁃ Verify if user searchable
