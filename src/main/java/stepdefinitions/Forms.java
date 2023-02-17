@@ -12,8 +12,7 @@ import pages.HomePage;
 import static manager.DriverManager.getDriver;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static utils.WaitingUtils.waitForAjaxToComplete;
-import static utils.WaitingUtils.waitForPageLoadComplete;
+import static utils.WaitingUtils.*;
 
 public class Forms {
     private final HomePage homePage = new PageFactoryManager().getHomePage();
@@ -64,13 +63,14 @@ public class Forms {
         formsPage.enterTextEmail(email);
     }
 
-    @And("Select Female in field Gender")
-    public void selectFemaleInFieldGender() {
-        formsPage.clickFemaleRadioButton();
+    @And("Select {string} in field Gender")
+    public void selectFemaleInFieldGender(final String gender) {
+        formsPage.selectFemaleRadioButton(gender);
     }
 
     @And("Select {string} in field Mobile")
     public void selectMobileNumberInFieldMobile(final String mobileNumber) {
+        waitForPageLoadComplete();
         formsPage.enterMobileNumber(mobileNumber);
     }
 

@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 import static utils.ScrollingUtils.scrollToDown;
 import static utils.WaitingUtils.waitVisibilityOfElement;
 
@@ -26,8 +28,8 @@ public class FormsPage extends BasePage {
     @FindBy(xpath = "//input[@id='userEmail']")
     private WebElement textEmail;
 
-    @FindBy(xpath = "//label[@class='custom-control-label' and text()='Female']")
-    private WebElement femaleRadioButton;
+    @FindBy(xpath = "//div[@id='genterWrapper']//div[contains(@class,'custom-radio')]")
+    private List<WebElement> femaleRadioButtons;
 
     @FindBy(xpath = "//input[@placeholder='Mobile Number']")
     private WebElement mobileNumberPhone;
@@ -50,7 +52,7 @@ public class FormsPage extends BasePage {
     @FindBy(xpath = "//label[@class='custom-control-label' and text()='Music']")
     private WebElement hobbiesMusic;
 
-    @FindBy(xpath="//textarea[@id='currentAddress']")
+    @FindBy(xpath = "//textarea[@id='currentAddress']")
     private WebElement currentAddressText;
 
     @FindBy(xpath = "//button[@id='submit']")
@@ -78,50 +80,57 @@ public class FormsPage extends BasePage {
         textEmail.sendKeys(emailText);
     }
 
-    public void clickFemaleRadioButton(){
-        waitVisibilityOfElement(femaleRadioButton);
-        femaleRadioButton.click();
+    public List<WebElement> getFemaleRadioButton() {
+        return femaleRadioButtons;
+    }
+
+    public void selectFemaleRadioButton(final String gender) {
+        List<WebElement> itemsButton = getFemaleRadioButton();
+                itemsButton.stream()
+                .filter(e -> e.getText().equals(gender))
+                .findAny().get()
+                .click();
         scrollToDown(driver);
     }
 
-    public void enterMobileNumber(final String mobileNumber){
+    public void enterMobileNumber(final String mobileNumber) {
         mobileNumberPhone.sendKeys(mobileNumber);
     }
 
-    public void enterDateOfBirth(){
+    public void enterDateOfBirth() {
         waitVisibilityOfElement(dateOfBirthInput);
         dateOfBirthInput.click();
         dateOfBirthInput.clear();
     }
 
-    public void clickMayMonthInput(){
+    public void clickMayMonthInput() {
         waitVisibilityOfElement(mayMonthInput);
         mayMonthInput.click();
     }
 
-    public void clickYearInput(){
+    public void clickYearInput() {
         waitVisibilityOfElement(yearInput);
         yearInput.click();
     }
 
-    public void clickDateFiveInput(){
+    public void clickDateFiveInput() {
         waitVisibilityOfElement(dateFiveInput);
         dateFiveInput.click();
         scrollToDown(driver);
     }
 
-    public void clickHobbiesMusic(){
+    public void clickHobbiesMusic() {
         waitVisibilityOfElement(hobbiesMusic);
         hobbiesMusic.click();
         scrollToDown(driver);
     }
 
-    public void enterCurrentAddressText(final String address){
+    public void enterCurrentAddressText(final String address) {
         currentAddressText.sendKeys(address);
         scrollToDown(driver);
     }
 
-    public void clickSubmitButton(){
+    public void clickSubmitButton() {
         submitButton.click();
     }
 

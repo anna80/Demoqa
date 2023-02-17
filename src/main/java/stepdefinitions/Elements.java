@@ -5,8 +5,11 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import manager.PageFactoryManager;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import pages.ElementsPage;
 import pages.HomePage;
+
+import java.util.List;
 
 import static manager.DriverManager.getDriver;
 import static org.junit.Assert.*;
@@ -67,14 +70,14 @@ public class Elements {
         assertFalse(elementPage.isUserCreatedVisible());
     }
 
-    @When("Do search by any user {string}")
-    public void doSearchByAnyUserName(final String name) {
-        elementPage.enterUserSearch(name);
+    @When("Do search by {string} of user")
+    public void doSearchByEmailOfUser(final String email) {
+        elementPage.selectEmailUser(email);
     }
 
-    @Then("Verify if user {string} searchable")
+    @Then("Verify if {string} of user searchable")
     public void verifyIfUserSearchable(final String expectedText) {
-        String foundText = elementPage.getFoundUser();
-        assertEquals(foundText, expectedText);
+        List<WebElement> watchListUsers = elementPage.getEnterUserSearch();
+        assertEquals(expectedText, watchListUsers.size());
     }
 }

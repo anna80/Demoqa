@@ -18,20 +18,17 @@ Feature: Elements Page
     And Click button Submit
     Then Verify if user is created
     And Delete created user
-#    Then Verify that user is deleted
     Examples:
       | url                 | firstName | lastName  | email                | age | salary | department |
       | https://demoqa.com/ | Anna      | Holubenko | anuli4ka80@gmail.com | 42  | 30000  | EPAM       |
 
 
-  Scenario Outline: Verify that user searchable
-    Given Open '<url>' page
+  Scenario: Verify that user searchable
+    Given Open 'https://demoqa.com/' page
     And Go to Elements menu
     And 'https://demoqa.com/elements' page is opened
     And Select Web table button
-    When Do search by any user '<name>'
-    Then Verify if user '<name>' searchable
-    Examples:
-      | url                 | name  |
-      | https://demoqa.com/ | Alden |
+    When Do search by 'alden@example.com' of user
+    Then Verify if 'alden@example.com' of user searchable
+
 

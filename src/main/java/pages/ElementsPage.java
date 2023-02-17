@@ -1,8 +1,11 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
 
 import static utils.ScrollingUtils.scrollToDown;
 import static utils.WaitingUtils.waitVisibilityOfElement;
@@ -33,11 +36,8 @@ public class ElementsPage extends BasePage {
     @FindBy(xpath = "//span[@id='delete-record-4']")
     private WebElement userDelete;
 
-    @FindBy(xpath = "//input[@id='searchBox']")
-    private WebElement userSearch;
-
-    @FindBy(xpath = "//div[text()='Alden']")
-    private WebElement foundUser;
+    @FindBy(xpath = "//div[@class='rt-tr-group']")
+    private List<WebElement> usersSearch;
 
     public ElementsPage(WebDriver driver) {
         super(driver);
@@ -83,12 +83,15 @@ public class ElementsPage extends BasePage {
         userDelete.click();
     }
 
-    public void enterUserSearch(final String text) {
-        userSearch.sendKeys(text);
-        waitVisibilityOfElement(userSearch);
+    public List<WebElement> getEnterUserSearch() {
+        return usersSearch;
     }
 
-    public String getFoundUser(){
-        return foundUser.getText();
+    public void selectEmailUser(final String email) {
+        List<WebElement> users = getEnterUserSearch();
+        users.stream()
+                .filter(e -> e.getText().equals(email))
+                .findAny().get()
+                .click();
     }
 }
