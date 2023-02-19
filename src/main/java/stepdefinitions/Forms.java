@@ -7,7 +7,10 @@ import manager.PageFactoryManager;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import pages.FormsPage;
+import pages.GenderRadioButton;
 import pages.HomePage;
+
+import java.util.List;
 
 import static manager.DriverManager.getDriver;
 import static org.junit.Assert.assertEquals;
@@ -17,6 +20,7 @@ import static utils.WaitingUtils.*;
 public class Forms {
     private final HomePage homePage = new PageFactoryManager().getHomePage();
     private final FormsPage formsPage = new PageFactoryManager().getFormsPage();
+    private final GenderRadioButton genderRadioButton = new PageFactoryManager().getGenderRadioButton();
 
     private final WebDriver driver = getDriver();
 
@@ -62,6 +66,7 @@ public class Forms {
     public void selectEmailInFieldEmail(final String email) {
         formsPage.enterTextEmail(email);
     }
+
 
     @And("Select {string} in field Gender")
     public void selectFemaleInFieldGender(final String gender) {

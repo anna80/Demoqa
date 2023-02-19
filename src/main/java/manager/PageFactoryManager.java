@@ -1,10 +1,7 @@
 package manager;
 
 import org.openqa.selenium.WebDriver;
-import pages.BasePage;
-import pages.ElementsPage;
-import pages.FormsPage;
-import pages.HomePage;
+import pages.*;
 
 import static manager.DriverManager.getDriver;
 
@@ -25,5 +22,9 @@ public class PageFactoryManager {
 
     public ElementsPage getElementsPage(){
         return new ElementsPage(driver);
+    }
+
+    public GenderRadioButton getGenderRadioButton(){
+        return new GenderRadioButton(driver);
     }
 }
