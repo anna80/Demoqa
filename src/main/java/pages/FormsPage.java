@@ -29,9 +29,6 @@ public class FormsPage extends BasePage {
     @FindBy(xpath = "//input[@id='userEmail']")
     private WebElement textEmail;
 
-    @FindBy(xpath = "//div[@id='genterWrapper']//div[contains(@class,'custom-radio')]")
-    private List<WebElement> femaleRadioButtons;
-
     @FindBy(xpath = "//input[@placeholder='Mobile Number']")
     private WebElement mobileNumberPhone;
 
@@ -65,6 +62,9 @@ public class FormsPage extends BasePage {
     @FindBy(xpath = "//div[@id='example-modal-sizes-title-lg']")
     private WebElement openNewWindow;
 
+    @FindBy(xpath = "//div[contains(@class,'custom-radio')]//label[@class='custom-control-label']")
+    private List<WebElement> radioButtonList;
+
     public void clickPracticeFormButton() {
         waitVisibilityOfElement(practiceFormButton);
         practiceFormButton.click();
@@ -84,15 +84,16 @@ public class FormsPage extends BasePage {
         textEmail.sendKeys(emailText);
     }
 
+
     public List<WebElement> getFemaleRadioButton() {
-        return femaleRadioButtons;
+        return radioButtonList;
     }
 
     public void selectFemaleRadioButton(final String gender) {
         List<WebElement> itemsButton = getFemaleRadioButton();
                 itemsButton.stream()
                 .filter(e -> e.getText().equals(gender))
-                .findAny().get()
+                        .findAny().get()
                 .click();
         scrollToDown(driver);
     }
