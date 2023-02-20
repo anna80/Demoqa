@@ -102,4 +102,9 @@ public class Forms {
     public void verifyIfAllDataIsCorrectInConfirmationWindow() {
         Assert.assertTrue(formsPage.isOpenNewWindowVisible());
     }
+
+    @And("Select file")
+            public void selectFile() {
+       formsPage.clickFileInput();
+    }
 }

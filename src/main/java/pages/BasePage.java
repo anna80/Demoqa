@@ -10,8 +10,4 @@ public abstract class BasePage {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-
-    public void openPage(){}
-
-    public void openFormsPage(){}
 }

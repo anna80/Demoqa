@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,6 +14,8 @@ public class FormsPage extends BasePage {
     public FormsPage(WebDriver driver) {
         super(driver);
     }
+
+    private static String FILE_PATH = "C:\\Users\\User\\OneDrive\\Рабочий стол\\qrcode.png";
 
     @FindBy(xpath = "//li[@id='item-0']/span[text()='Practice Form']")
     private WebElement practiceFormButton;
@@ -51,6 +52,9 @@ public class FormsPage extends BasePage {
 
     @FindBy(xpath = "//label[@class='custom-control-label' and text()='Music']")
     private WebElement hobbiesMusic;
+
+    @FindBy(xpath = "//input[@id='uploadPicture']")
+    private WebElement fileInput;
 
     @FindBy(xpath = "//textarea[@id='currentAddress']")
     private WebElement currentAddressText;
@@ -123,6 +127,11 @@ public class FormsPage extends BasePage {
         waitVisibilityOfElement(hobbiesMusic);
         hobbiesMusic.click();
         scrollToDown(driver);
+    }
+
+    public void clickFileInput() {
+        fileInput.sendKeys(FILE_PATH);
+        fileInput.isDisplayed();
     }
 
     public void enterCurrentAddressText(final String address) {

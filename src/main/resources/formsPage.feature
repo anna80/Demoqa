@@ -15,9 +15,10 @@ Feature: Forms Page
     And Select '<mobileNumber>' in field Mobile
     And Select Date in field Date of birth
     And Select Music in field Hobbies
+    And Select file
     And Add '<currentAddress>' in field
     And Click button Submit
     Then Verify if all data is correct in confirmation window
     Examples:
       | firstName | lastName  | email                |gender| mobileNumber | currentAddress|
-      | Anna      | Holubenko | anuli4ka80@gmail.com |female| 0939897615   | Ukraine       |
+      | Anna      | Holubenko | anuli4ka80@gmail.com |Female| 0939897615   | Ukraine       |

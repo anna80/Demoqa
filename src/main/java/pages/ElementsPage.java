@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -36,7 +35,7 @@ public class ElementsPage extends BasePage {
     @FindBy(xpath = "//span[@id='delete-record-4']")
     private WebElement userDelete;
 
-    @FindBy(xpath = "//div[@class='rt-tr-group']")
+    @FindBy(xpath = "//div[@class='rt-tr-group']//div[@class='rt-td'][4]")
     private List<WebElement> usersSearch;
 
     public ElementsPage(WebDriver driver) {
@@ -92,6 +91,6 @@ public class ElementsPage extends BasePage {
         users.stream()
                 .filter(e -> e.getText().equals(email))
                 .findAny().get()
-                .click();
+                .isDisplayed();
     }
 }
